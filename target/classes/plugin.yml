@@ -1,0 +1,4 @@
+name: CO_Ranks
+version: '1.0-SNAPSHOT'
+main: it.craftopoly.co_ranks.CO_Ranks
+api-version: 1.20

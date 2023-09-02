@@ -15,11 +15,7 @@ public class HttpUtils {
 
     public static <T> T get(String endpoint, String token, Class<T> responseType){
         try {
-            // Encode the endpoint
-            String encodedEndpoint = URLEncoder.encode(endpoint, StandardCharsets.UTF_8.toString());
-
-            // Construct the full URL with the encoded endpoint
-            URL url = new URL(baseUrl + encodedEndpoint);
+            URL url = new URL(baseUrl + endpoint);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             setAuthenticationHeader(connection, token);
@@ -88,7 +84,7 @@ public class HttpUtils {
         }
     }
 
-    public <T> T put(String endpoint, String token, Object data, Class<T> responseType) {
+    public static <T> T put(String endpoint, String token, Object data, Class<T> responseType) {
         try {
             URL url = new URL(baseUrl + endpoint);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

@@ -2,10 +2,6 @@ package it.craftopoly.co_ranks.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import it.craftopoly.co_ranks.schema.Rank;
-
-import java.lang.reflect.Type;
-
 public class HttpCall
 {
     public static String getRank(String username)

@@ -13,10 +13,7 @@ public class ChatEvent implements Listener {
     {
         Player player = e.getPlayer();
         String rank = HttpCall.getRank(player.getName());
-        e.setFormat(rank
-                .replace("_", " ")
-                .replace("SBO", "[")
-                .replace("SBC", "]") + " §7" + player.getName() + ": §7§o" + e.getMessage());
+        e.setFormat(rank + " §7" + player.getName() + " §8➜ §7" + e.getMessage());
     }
 
 }

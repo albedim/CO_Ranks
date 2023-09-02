@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class ElementsUtils
 {
     public static ItemStack createCustomElement(Material id, short data, int amount, List<String> lore, String display)

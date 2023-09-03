@@ -1,5 +1,6 @@
 package it.craftopoly.co_ranks;
 
+import it.craftopoly.co_ranks.executor.RankExecutor;
 import it.craftopoly.co_ranks.listener.ChatEvent;
 import it.craftopoly.co_ranks.listener.JoinEvent;
 import org.bukkit.Bukkit;
@@ -13,6 +14,7 @@ public final class CO_Ranks extends JavaPlugin {
         // Plugin startup logic
         plugin = this;
         saveDefaultConfig();
+        getCommand("rank").setExecutor(new RankExecutor());
         Bukkit.getServer().getPluginManager().registerEvents(new ChatEvent(),this);
         Bukkit.getServer().getPluginManager().registerEvents(new JoinEvent(),this);
     }

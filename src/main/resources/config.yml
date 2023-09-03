@@ -1,2 +1,8 @@
 settings:
  api_url: http://localhost:5000/api/v1
+
+messages:
+   user_not_found: " §cUtente non trovato"
+   error: " §cErrore, riprova"
+   rank_successfully_changed: " §aRank cambiato con successo in {rank}"
+   no_enough_permissions: " §cNon hai abbastanza permessi per cambiare questo rank"

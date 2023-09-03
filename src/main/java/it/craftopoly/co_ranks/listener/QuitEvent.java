@@ -5,13 +5,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
-public class JoinEvent implements Listener {
+public class QuitEvent implements Listener {
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e)
+    public void onQuit(PlayerQuitEvent e)
     {
-        e.setJoinMessage(null);
+        e.setQuitMessage(null);
         Player player = e.getPlayer();
         String rank = HttpCall.getRank(player.getName());
         player.setPlayerListName(" " + rank + " §7" + player.getName());

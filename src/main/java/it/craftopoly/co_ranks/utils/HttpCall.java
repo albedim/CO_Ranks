@@ -1,6 +1,5 @@
 package it.craftopoly.co_ranks.utils;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import it.craftopoly.co_ranks.CO_Ranks;
 import it.craftopoly.co_ranks.schema.RankEdit;
@@ -17,6 +16,18 @@ public class HttpCall
 
         return response.get("param").getAsJsonObject().get("name").getAsString();
     }
+
+    public static JsonObject getMute(String username)
+    {
+        JsonObject response = HttpUtils.get(
+                "/mutes/user/"+username,
+                null,
+                JsonObject.class
+        ).getAsJsonObject();
+
+        return response.getAsJsonObject();
+    }
+
 
     public static String upgrade(String uuid, String username)
     {

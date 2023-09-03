@@ -12,6 +12,8 @@ public class ChatEvent implements Listener {
     public void onChat(PlayerChatEvent e)
     {
         Player player = e.getPlayer();
+        player.setInvisible(false);
+        player.setCustomName(" dgdsgdssg ");
         String rank = HttpCall.getRank(player.getName());
         e.setFormat(rank + " §7" + player.getName() + " §8➜ §7" + e.getMessage());
     }

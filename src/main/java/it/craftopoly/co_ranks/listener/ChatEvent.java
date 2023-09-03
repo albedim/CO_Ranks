@@ -15,7 +15,6 @@ public class ChatEvent implements Listener {
     public void onChat(PlayerChatEvent e)
     {
         Player player = e.getPlayer();
-        player.setCustomName(" dgdsgdssg ");
         String rank = HttpCall.getRank(player.getName());
         e.setFormat(rank + " §7" + player.getName() + " §8➜ §7" + e.getMessage());
 
@@ -24,26 +23,29 @@ public class ChatEvent implements Listener {
         if(res.get("param") != null){
             JsonObject mute = res.get("param").getAsJsonObject();
             e.setCancelled(true);
-            player.sendMessage("§8-------------------------------------");
-            Utils.sendMessage(
-                    player,
-            "§a§lMute__ §7Sei stato mutato, non puoi scrivere in chat._" +
-                    " §8 ▪ §7Mutato da: §a"+mute.get("muted_by").getAsJsonObject().get("username").getAsString()+"_" +
-                    " §8 ▪ §7Mutato il: §a"+
-                        DateUtils.fixDate(mute.get("muted_on").getAsString().split(" ")[0]) + " " +
-                        mute.get("muted_on").getAsString().split(" ")[1].split(":")[0] + ":" +
-                        mute.get("muted_on").getAsString().split(" ")[1].split(":")[1]
-                    +"_" +
-                   " §8 ▪ §7Fine del mute: §a"+
-                                DateUtils.fixDate(mute.get("ends_on").getAsString().split(" ")[0]) + " " +
-                                mute.get("ends_on").getAsString().split(" ")[1].split(":")[0] + ":" +
-                                mute.get("ends_on").getAsString().split(" ")[1].split(":")[1]
-                    +"_" +
-                    " §8 ▪ §7Motivazione: "+mute.get("reason").getAsString()+"_");
-            player.sendMessage("§8-------------------------------------");
-
+            sendMessage(player, mute);
         }
 
     }
 
+    private static void sendMessage(Player player, JsonObject mute)
+    {
+        player.sendMessage("§8-------------------------------------");
+        Utils.sendMessage(
+                player,
+                "§a§lMute__ §7Sei stato mutato, non puoi scrivere in chat._" +
+                        " §8 ▪ §7Mutato da: §a"+mute.get("muted_by").getAsJsonObject().get("username").getAsString()+"_" +
+                        " §8 ▪ §7Mutato il: §a"+
+                        DateUtils.fixDate(mute.get("muted_on").getAsString().split(" ")[0]) + " " +
+                        mute.get("muted_on").getAsString().split(" ")[1].split(":")[0] + ":" +
+                        mute.get("muted_on").getAsString().split(" ")[1].split(":")[1]
+                        +"_" +
+                        " §8 ▪ §7Fine del mute: §a"+
+                        DateUtils.fixDate(mute.get("ends_on").getAsString().split(" ")[0]) + " " +
+                        mute.get("ends_on").getAsString().split(" ")[1].split(":")[0] + ":" +
+                        mute.get("ends_on").getAsString().split(" ")[1].split(":")[1]
+                        +"_" +
+                        " §8 ▪ §7Motivazione: "+mute.get("reason").getAsString()+"_");
+        player.sendMessage("§8-------------------------------------");
+    }
 }

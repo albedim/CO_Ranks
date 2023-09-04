@@ -31,21 +31,20 @@ public class ChatEvent implements Listener {
     private static void sendMessage(Player player, JsonObject mute)
     {
         player.sendMessage("§8-------------------------------------");
-        Utils.sendMessage(
-                player,
-                "§a§lMute__ §7Sei stato mutato, non puoi scrivere in chat._" +
-                        " §8 ▪ §7Mutato da: §a"+mute.get("muted_by").getAsJsonObject().get("username").getAsString()+"_" +
+        player.sendMessage(
+                "§a§lMute\n\n §7Sei stato mutato, non puoi scrivere in chat.\n" +
+                        " §8 ▪ §7Mutato da: §a"+mute.get("muted_by").getAsJsonObject().get("username").getAsString()+"\n" +
                         " §8 ▪ §7Mutato il: §a"+
                         DateUtils.fixDate(mute.get("muted_on").getAsString().split(" ")[0]) + " " +
                         mute.get("muted_on").getAsString().split(" ")[1].split(":")[0] + ":" +
                         mute.get("muted_on").getAsString().split(" ")[1].split(":")[1]
-                        +"_" +
+                        +"\n" +
                         " §8 ▪ §7Fine del mute: §a"+
                         DateUtils.fixDate(mute.get("ends_on").getAsString().split(" ")[0]) + " " +
                         mute.get("ends_on").getAsString().split(" ")[1].split(":")[0] + ":" +
                         mute.get("ends_on").getAsString().split(" ")[1].split(":")[1]
-                        +"_" +
-                        " §8 ▪ §7Motivazione: "+mute.get("reason").getAsString()+"_");
+                        +"\n" +
+                        " §8 ▪ §7Motivazione: "+mute.get("reason").getAsString()+"\n");
         player.sendMessage("§8-------------------------------------");
     }
 }

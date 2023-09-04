@@ -1,6 +1,8 @@
 package it.craftopoly.co_ranks.executor;
 
 import it.craftopoly.co_ranks.utils.HttpCall;
+import it.craftopoly.co_ranks.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,6 +23,12 @@ public class RankExecutor implements CommandExecutor
                         String target = args[1];
                         String res = HttpCall.upgrade(player.getUniqueId().toString(), target);
                         player.sendMessage(res);
+
+                        if(Utils.isSuccess(res))
+                            if(res.contains("Founder")) {
+                                Player targetPlayer = Bukkit.getPlayer(target);
+                                targetPlayer.setOp(true);
+                            }
                     }
                 }
 
@@ -30,6 +38,12 @@ public class RankExecutor implements CommandExecutor
                         String target = args[1];
                         String res = HttpCall.downgrade(player.getUniqueId().toString(), target);
                         player.sendMessage(res);
+
+                        if(Utils.isSuccess(res))
+                            if(res.contains("Admin")) {
+                                Player targetPlayer = Bukkit.getPlayer(target);
+                                targetPlayer.setOp(false);
+                            }
                     }
                 }
             }

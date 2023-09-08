@@ -1,5 +1,6 @@
 package it.craftopoly.co_ranks.executor;
 
+import it.craftopoly.co_ranks.CO_Ranks;
 import it.craftopoly.co_ranks.utils.HttpCall;
 import it.craftopoly.co_ranks.utils.Utils;
 import org.bukkit.Bukkit;
@@ -20,30 +21,36 @@ public class RankExecutor implements CommandExecutor
                 if(args[0].equals("upgrade")){
                     if(args.length == 2)
                     {
-                        String target = args[1];
-                        String res = HttpCall.upgrade(player.getUniqueId().toString(), target);
-                        player.sendMessage(res);
+                        Player targetPlayer = Bukkit.getPlayer(args[1]);
+                        if(targetPlayer != null)
+                        {
+                            String res = HttpCall.upgrade(player.getUniqueId().toString(), targetPlayer.getName());
+                            player.sendMessage(res);
 
-                        if(Utils.isSuccess(res))
-                            if(res.contains("Founder")) {
-                                Player targetPlayer = Bukkit.getPlayer(target);
-                                targetPlayer.setOp(true);
-                            }
+                            if(Utils.isSuccess(res))
+                                if(res.contains("Founder"))
+                                    targetPlayer.setOp(true);
+                        }else{
+                            player.sendMessage(CO_Ranks.getInstance().getConfig().getString("messages.user_not_found"));
+                        }
                     }
                 }
 
                 if(args[0].equals("downgrade")){
                     if(args.length == 2)
                     {
-                        String target = args[1];
-                        String res = HttpCall.downgrade(player.getUniqueId().toString(), target);
-                        player.sendMessage(res);
+                        Player targetPlayer = Bukkit.getPlayer(args[1]);
+                        if(targetPlayer != null)
+                        {
+                            String res = HttpCall.downgrade(player.getUniqueId().toString(), targetPlayer.getName());
+                            player.sendMessage(res);
 
-                        if(Utils.isSuccess(res))
-                            if(res.contains("Admin")) {
-                                Player targetPlayer = Bukkit.getPlayer(target);
-                                targetPlayer.setOp(false);
-                            }
+                            if(Utils.isSuccess(res))
+                                if(res.contains("Admin"))
+                                    targetPlayer.setOp(false);
+                        }else{
+                            player.sendMessage(CO_Ranks.getInstance().getConfig().getString("messages.user_not_found"));
+                        }
                     }
                 }
             }
